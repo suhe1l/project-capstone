@@ -2,3 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .btn-black {
+      @apply font-oswald bg-black text-white px-6 py-3 hover:bg-green-500 hover:scale-110 transition duration-500;
+    }
+  
+    .btn-normal {
+      @apply border font-oswald border-black px-6 py-3 hover:bg-green-500 hover:scale-110 transition duration-500;
+    }
+  
+    .heading-1 {
+      @apply font-poppins text-4xl md:text-5xl lg:text-7xl md:leading-tight lg:leading-tight text-black font-extrabold lg:mt-6;
+    }
+  
+    .text-normal {
+      @apply text-black text-base lg:text-xl md:text-lg max-w-xl mx-auto lg:mx-0 font-dmSans mb-6;
+    }
+
+    .left-div {
+      @apply flex flex-col justify-center lg:pt-8 lg:w-1/2 text-center md:text-center lg:text-left mt-0;
+    }
+
+    .list-style {
+      @apply flex items-center justify-center lg:justify-start;
+    }
+
+    .green-tick {
+      @apply w-5 h-5 text-green-500 mr-2 flex-shrink-0;
+    }
+
+    .section-style {
+      @apply bg-white container mx-auto px-4 md:px-0 lg:px-0 py-16 lg:pt-16 lg:pb-28;
+    }
+
+    .flex-box {
+      @apply flex flex-col lg:flex-row justify-between items-center lg:items-start py-10 lg:pt-0;
+    }
+
+    .right-div {
+      @apply flex flex-col justify-center items-center lg:items-start lg:max-w-3xl mt-16 lg:mt-16 md:max-w-xl lg:ml-28;
+    }
+}

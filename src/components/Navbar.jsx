@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <section>
-      <Link to='/'>
+      <Link to='/' className="font-tacOne text-3xl">
         FITrack
       </Link>
     </section>
