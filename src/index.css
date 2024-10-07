@@ -32,7 +32,7 @@
     }
 
     .section-style {
-      @apply bg-white container mx-auto px-4 md:px-0 lg:px-0 py-16 lg:pt-16 lg:pb-28;
+      @apply bg-white container mx-auto px-4 md:px-0 lg:px-0 py-16 lg:py-16;
     }
 
     .flex-box {
