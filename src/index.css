@@ -42,4 +42,8 @@
     .right-div {
       @apply flex flex-col justify-center items-center lg:items-start lg:max-w-3xl mt-16 lg:mt-16 md:max-w-xl lg:ml-28;
     }
+
+    .nav-link {
+      @apply hidden md:flex space-x-12 text-black font-teko text-xl hover:text-green-500 hover:scale-110 transition duration-500;
+    }
 }
