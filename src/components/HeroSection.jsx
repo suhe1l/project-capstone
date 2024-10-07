@@ -1,19 +1,19 @@
-import React from 'react'
-import HomeImage from '../assets/HomeImage.jpg'
-import TreadmillMobile from '../assets/treadmill-cropped.png'
+import React from 'react';
+import HomeImage from '../assets/HomeImage.jpg';
+import TreadmillMobile from '../assets/treadmill-cropped.png';
 import TreadmillDesktop from '../assets/Treadmill.jpg'
 import Bike from '../assets/bike.jpg'
 
-const HeroSection = () => {
+function HomePage() {
   return (
-    <section>
-        <div>
+    <section className="relative">
+        <div id='home'>
             {/* Background Image */}
-            <div className="w-full h-[500px] md:h-[490px] lg:h-[560px] overflow-hidden">
+            <div className="">
                 <img
                     src={HomeImage}
                     alt="Home Background"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full sm:h-[500px] md:h-[550px] lg:h-[610px] object-cover"
                 />
             </div>
 
@@ -39,51 +39,50 @@ const HeroSection = () => {
                 </div>
             </div>
         </div>
-        
-        {/* Track Segment */}
-        <div id='about' className="section-style">
-            <div className="flex-box">
-                {/* Left Side: Copy */}
-                <div className="left-div">
-                    <p className="font-dmSans text-xl font-bold">Track</p>
-                    <h2 className="font-poppins text-4xl font-extrabold my-4">
-                    Effortlessly <span className="italic underline text-green-500">Log Your Workouts</span> with Ease
-                    </h2>
-                    <p className="font-dmSans text-lg lg:text-2xl my-5 font-medium">
-                    With FITrack, users can seamlessly log their workouts by entering details such as exercises, sets, reps, and weights. This feature ensures that you stay organized and motivated on your fitness journey.
-                    </p>
-                    
-                    <ul className="font-dmSans text-lg lg:text-2xl space-y-2 mt-4">
-                        <li className="list-style">
-                            <svg className="green-tick" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            <span>Input exercises, sets, reps and weights effortlessly</span>
-                        </li>
-                        <li className="list-style">
-                            <svg className="green-tick" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            <span>Stay on top of your fitness goals today</span>
-                        </li>
-                        <li className="list-style">
-                            <svg className="green-tick" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            <span>Track your progress and celebrate your achievements</span>
-                        </li>
-                    </ul>
-                </div>
 
-                <div className="lg:max-w-2xl mt-16 lg:mt-0 md:max-w-xl">
-                    <img src={TreadmillMobile} alt="Man on treadmill" className="block md:hidden mt-10 max-w-md" />
-                    <img src={TreadmillDesktop} alt="Man on treadmill" className="hidden md:block" />         
-                </div>
+      {/* Track Segment */}
+      <div id='about' className="section-style">
+        <div className="flex-box">
+            {/* Left Side: Copy */}
+            <div className="left-div">
+                <p className="font-dmSans text-xl font-bold">Track</p>
+                <h2 className="font-poppins text-4xl font-extrabold my-4">
+                Effortlessly <span className="italic underline text-green-500">Log Your Workouts</span> with Ease
+                </h2>
+                <p className="font-dmSans text-lg lg:text-2xl my-5 font-medium">
+                With FITrack, users can seamlessly log their workouts by entering details such as exercises, sets, reps, and weights. This feature ensures that you stay organized and motivated on your fitness journey.
+                </p>
+                
+                <ul className="font-dmSans text-lg lg:text-2xl space-y-2 mt-4">
+                    <li className="list-style">
+                        <svg className="green-tick" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Input exercises, sets, reps and weights effortlessly</span>
+                    </li>
+                    <li className="list-style">
+                        <svg className="green-tick" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Stay on top of your fitness goals today</span>
+                    </li>
+                    <li className="list-style">
+                        <svg className="green-tick" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Track your progress and celebrate your achievements</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div className="lg:max-w-2xl mt-16 lg:mt-0 md:max-w-xl">
+                <img src={TreadmillMobile} alt="Man on treadmill" className="block md:hidden mt-10 max-w-md" />
+                <img src={TreadmillDesktop} alt="Man on treadmill" className="hidden md:block" />         
             </div>
         </div>
+      </div>
 
-        {/* Discover Section */}
-        <div className="section-style">
+      <div className="section-style">
             <div className="flex-box">
                 <div className="left-div mt-0">
                     <img src={Bike} alt="Man riding bike" />           
@@ -97,9 +96,9 @@ const HeroSection = () => {
                     </div>
                 </div>
             </div>
-        </div>       
+      </div>
     </section>
-  )
+  );
 }
 
-export default HeroSection
+export default HomePage;

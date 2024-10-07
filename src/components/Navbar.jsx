@@ -1,18 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <nav className="fixed w-full bg-white py-4 shadow-md z-20">
-      <div className="container mx-auto flex justify-between items-center px-6">
-        <Link to='/' className="text-3xl font-tacOne hover:text-green-500 hover:scale-110 transition duration-500">FITrack</Link>
-        <div className="hidden md:flex items-center space-x-12 text-black font-teko text-xl">
-          <Link to='/' className="nav-link" >Home</Link>
-          <Link to='#about' className="nav-link">About</Link>
-          <Link to='#contact' className="nav-link">Contact</Link>
-          <Link to='#exercises' className="hidden md:flex btn-black text-lg">Get Started</Link>
+    <nav className="fixed top-0 w-full bg-white py-4 z-20 shadow-md">
+        <div className="container mx-auto flex justify-between items-center px-6">
+            <div className="text-3xl font-tacOne">FITrack</div>
+            <ul className="hidden md:flex space-x-12 text-black font-teko text-xl">
+                <li><a href="#home" className="hover:text-green-500">Home</a></li>
+                <li><a href="#about" className="hover:text-green-500">About Us</a></li>
+                <li><a href="#services" className="hover:text-green-500">Services</a></li>
+            </ul>
+            <div className="hidden md:flex">
+                <Link to="/app" className="btn-black">
+                    Get Started
+                </Link>
+            </div>
         </div>
-      </div>
     </nav>
   );
 }
