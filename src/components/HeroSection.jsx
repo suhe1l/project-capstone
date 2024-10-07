@@ -82,19 +82,20 @@ const HeroSection = () => {
             </div>
         </div>
 
+        {/* Discover Section */}
         <div className="section-style">
             <div className="flex-box">
-            <div className="left-div mt-0">
-                <img src={Bike} alt="Man riding bike" />           
-            </div>
-
-            <div className="right-div">
-                <h2 className="text-center lg:text-start font-poppins text-4xl font-extrabold my-4 leading-snug">Discover Exercises with <span className="text-green-500 italic">WGER API</span> Integration</h2>
-                <p className="text-center lg:text-start text-normal lg:text-2xl">With our <span className="font-bold">Exercise Search</span> feature, you can effortlessly find a wide variety of exercises tailored to your fitness goals. The <span className="font-bold italic">WGER API</span> integration ensures you have access to detailed exercise descriptions and variations at your fingertips.</p>
-                <div>
-                    <button className="btn-normal font-oswald my-0 lg:text-lg">Explore</button>
+                <div className="left-div mt-0">
+                    <img src={Bike} alt="Man riding bike" />           
                 </div>
-            </div>
+
+                <div className="right-div">
+                    <h2 className="text-center lg:text-start font-poppins text-4xl font-extrabold my-4 leading-snug">Discover Exercises with <span className="text-green-500 italic">WGER API</span> Integration</h2>
+                    <p className="text-center lg:text-start text-normal lg:text-2xl">With our <span className="font-bold">Exercise Search</span> feature, you can effortlessly find a wide variety of exercises tailored to your fitness goals. The <span className="font-bold italic">WGER API</span> integration ensures you have access to detailed exercise descriptions and variations at your fingertips.</p>
+                    <div>
+                        <button className="btn-normal font-oswald my-0 lg:text-lg">Explore</button>
+                    </div>
+                </div>
             </div>
         </div>       
     </section>
