@@ -4,13 +4,21 @@ const WorkoutHistory = () => {
   const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
-    const storedWorkouts = JSON.parse(localStorage.getItem('workouts') || '[]');
-    setWorkouts(storedWorkouts);
+    const fetchWorkouts = () => {
+      const storedWorkouts = JSON.parse(localStorage.getItem('workouts') || '[]');
+      setWorkouts(storedWorkouts);
+    };
+
+    fetchWorkouts();
+    // Set up an interval to check for updates every 5 seconds
+    const intervalId = setInterval(fetchWorkouts, 5000);
+
+    // Clean up the interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Workout History</h2>
+    <div className="max-w-full">
       {workouts.length === 0 ? (
         <p>No workouts logged yet. Start by logging a workout!</p>
       ) : (
