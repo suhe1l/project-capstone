@@ -37,7 +37,6 @@ const WorkoutLog = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl font-bold mb-4">Log Your Workout</h2>
       <Formik
         initialValues={{ exercises: [{ name: '', sets: '', reps: '', weight: '' }] }}
         validationSchema={workoutSchema}
