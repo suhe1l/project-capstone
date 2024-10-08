@@ -5,17 +5,27 @@ const WorkoutHistory = () => {
 
   useEffect(() => {
     const fetchWorkouts = () => {
-      const storedWorkouts = JSON.parse(localStorage.getItem('workouts') || '[]');
-      setWorkouts(storedWorkouts);
+      try {
+        const storedWorkouts = JSON.parse(localStorage.getItem('workouts') || '[]');
+        setWorkouts(storedWorkouts);
+      } catch (error) {
+        console.error('Error fetching workouts from localStorage', error);
+      }
     };
 
     fetchWorkouts();
-    // Set up an interval to check for updates every 5 seconds
-    const intervalId = setInterval(fetchWorkouts, 5000);
 
-    // Clean up the interval on component unmount
-    return () => clearInterval(intervalId);
+    const handleWorkoutLogged = () => fetchWorkouts();
+    window.addEventListener('Workout Logged:', handleWorkoutLogged);
+
+    return () => window.removeEventListener('Workout Logged:', handleWorkoutLogged);
   }, []);
+
+  const deleteWorkout = (index) => {
+    const updatedWorkouts = workouts.filter((_, i) => i !== index);
+    setWorkouts(updatedWorkouts);
+    localStorage.setItem('workouts', JSON.stringify(updatedWorkouts));
+  };
 
   return (
     <div className="max-w-full">
@@ -33,6 +43,12 @@ const WorkoutHistory = () => {
                   </li>
                 ))}
               </ul>
+              <button
+                className="text-red-500 hover:text-red-700 mt-2"
+                onClick={() => deleteWorkout(index)}
+              >
+                Delete Workout
+              </button>
             </li>
           ))}
         </ul>
