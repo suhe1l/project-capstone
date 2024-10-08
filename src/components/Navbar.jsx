@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav className="fixed top-0 w-full bg-white py-4 z-20 shadow-md">
+    <nav className="top-0 w-full bg-white py-4 z-20 shadow-md">
         <div className="container mx-auto flex justify-between items-center px-6">
             <Link to="/" className="text-3xl font-tacOne">FITrack</Link>
             <ul className="hidden md:flex space-x-12 text-black font-teko text-xl">
