@@ -37,7 +37,7 @@ const SearchExercises = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Exercise Search</h2>
+      <h2 className="font-poppins text-3xl font-bold mb-4">Save Yourself the Time and Search Here</h2>
       <Formik
         initialValues={{ searchTerm: '' }}
         validationSchema={searchSchema}
@@ -57,7 +57,7 @@ const SearchExercises = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 disabled:bg-gray-400"
+              className="btn-normal w-full my-4"
             >
               Search
             </button>
