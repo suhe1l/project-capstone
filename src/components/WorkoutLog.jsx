@@ -53,14 +53,14 @@ const WorkoutLog = () => {
                   <button
                     type="button"
                     onClick={() => push({ name: '', sets: '', reps: '', weight: '' })}
-                    className="w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300"
+                    className="btn-normal w-full"
                   >
                     Add Exercise
                   </button>
                 </>
               )}
             </FieldArray>
-            <button type="submit" className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
+            <button type="submit" className="btn-black w-full">
               Log Workout
             </button>
           </Form>
