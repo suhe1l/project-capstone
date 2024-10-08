@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WorkoutLog from '../components/WorkoutLog';
 import WorkoutHistory from '../components/WorkoutHistory';
-import SearchExercise from '../components/SearchExercises';
+import SearchExercises from '../components/SearchExercises';
 
 const MainApp = () => {
   const [activeTab, setActiveTab] = useState('log');
@@ -31,7 +31,7 @@ const MainApp = () => {
 
       {activeTab === 'log' && <WorkoutLog />}
       {activeTab === 'history' && <WorkoutHistory />}
-      {activeTab === 'search' && <SearchExercise />}
+      {activeTab === 'search' && <SearchExercises />}
     </div>
   );
 };

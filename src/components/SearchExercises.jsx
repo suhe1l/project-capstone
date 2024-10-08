@@ -6,7 +6,7 @@ const searchSchema = Yup.object().shape({
   searchTerm: Yup.string().required('Please enter a search term'),
 });
 
-const ExerciseSearch = () => {
+const SearchExercises = () => {
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -75,4 +75,4 @@ const ExerciseSearch = () => {
   );
 };
 
-export default ExerciseSearch;
+export default SearchExercises;
