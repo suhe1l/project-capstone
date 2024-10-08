@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { debounce } from 'lodash';
 
 const searchSchema = Yup.object().shape({
   searchTerm: Yup.string().required('Please enter a search term'),
@@ -11,12 +12,12 @@ const SearchExercises = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSearch = async (values, { setSubmitting }) => {
+  const fetchExercises = async (searchTerm) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await fetch(`https://wger.de/api/v2/exercise/search/?term=${values.searchTerm}`);
+      const response = await fetch(`https://wger.de/api/v2/exercise/search/?term=${searchTerm}`);
       if (!response.ok) throw new Error('Failed to fetch exercises');
       const data = await response.json();
       setExercises(data.results);
@@ -24,8 +25,14 @@ const SearchExercises = () => {
       setError('An error occurred while fetching exercises. Please try again.');
     } finally {
       setLoading(false);
-      setSubmitting(false);
     }
+  };
+
+  const debouncedFetch = useCallback(debounce(fetchExercises, 500), []);
+
+  const handleSearch = (values, { setSubmitting }) => {
+    debouncedFetch(values.searchTerm);
+    setSubmitting(false);
   };
 
   return (
