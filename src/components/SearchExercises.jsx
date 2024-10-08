@@ -37,7 +37,7 @@ const SearchExercises = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="font-poppins text-3xl font-bold mb-4">Save Yourself the Time and Search Here</h2>
+      <h2 className="flex justify-center text-center font-dmSans text-3xl font-bold mb-4 lg:mt-20">Save Yourself the Time and Search Here</h2>
       <Formik
         initialValues={{ searchTerm: '' }}
         validationSchema={searchSchema}

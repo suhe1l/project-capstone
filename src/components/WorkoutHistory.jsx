@@ -30,13 +30,13 @@ const WorkoutHistory = () => {
   return (
     <div className="max-w-full">
       {workouts.length === 0 ? (
-        <p>No workouts logged yet. Start by logging a workout!</p>
+        <p className="flex font-poppins text-lg justify-center">No workouts logged yet. Start by logging a workout!</p>
       ) : (
         <ul className="space-y-4">
           {workouts.map((workout, index) => (
             <li key={index} className="border p-4 rounded shadow">
-              <h3 className="font-bold">{workout.date}</h3>
-              <ul className="ml-4 list-disc">
+              <h3 className="font-dmSans font-bold">{workout.date}</h3>
+              <ul className="font-poppins ml-4 list-disc">
                 {workout.exercises.map((exercise, exIndex) => (
                   <li key={exIndex}>
                     {exercise.name}: {exercise.sets} sets, {exercise.reps} reps, {exercise.weight} lbs
