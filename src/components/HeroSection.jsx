@@ -13,11 +13,11 @@ function HomePage() {
                 <img
                     src={HomeImage}
                     alt="Home Background"
-                    className="w-full h-full sm:h-[500px] md:h-[550px] lg:h-[610px] object-cover"
+                    className="w-full h-full sm:h-[500px] md:h-[500px] lg:h-[530px] object-cover"
                 />
             </div>
 
-            <div className="bg-white container mx-auto px-4 lg:px-0 md:mt-2">
+            <div className="bg-white container mx-auto sm:mt-10 px-4 lg:px-0 md:mt-2">
                 <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start py-10 lg:py-14">
                     {/* Left Side: Heading */}
                     <div className="lg:w-1/2 text-center lg:text-left mb-3 lg:mb-0">
