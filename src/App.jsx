@@ -8,12 +8,20 @@ import MainApp from "./pages/MainApp";
 function App() {
   return (
     <Router className="m-auto" >
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/app" element={<MainApp />} />
-      </Routes>
-      <Footer />
+      <header>
+        <Navbar />
+      </header>
+
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/app" element={<MainApp />} />
+        </Routes>
+      </main>
+      
+      <footer>
+        <Footer />
+      </footer>
     </Router>
   );
 }
