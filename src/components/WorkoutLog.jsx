@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
+// Constants
+const LOCAL_STORAGE_KEY = 'workouts';
 
 // Validation schemas for exercise inputs
 const exerciseSchema = Yup.object().shape({
@@ -15,23 +18,27 @@ const workoutSchema = Yup.object().shape({
 });
 
 const WorkoutLog = () => {
-  const handleSubmit = (values, { resetForm }) => {
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const logWorkout = (values, { resetForm }) => {
     const workout = {
       date: new Date().toLocaleDateString(),
       exercises: values.exercises,
     };
 
     try {
-      const existingWorkouts = JSON.parse(localStorage.getItem('workouts') || '[]');
-      localStorage.setItem('workouts', JSON.stringify([...existingWorkouts, workout]));
+      const existingWorkouts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([...existingWorkouts, workout]));
       console.log('Workout logged:', workout);
-
+      
       // Dispatch event to inform WorkoutHistory of new workout
       window.dispatchEvent(new Event('Workout Logged:'));
 
       resetForm();
+      setErrorMessage('Workout logged successfully!'); // Success feedback
     } catch (error) {
       console.error('Error saving workout to localStorage', error);
+      setErrorMessage('Error saving workout. Please try again.'); // Error feedback
     }
   };
 
@@ -40,9 +47,9 @@ const WorkoutLog = () => {
       <Formik
         initialValues={{ exercises: [{ name: '', sets: '', reps: '', weight: '' }] }}
         validationSchema={workoutSchema}
-        onSubmit={handleSubmit}
+        onSubmit={logWorkout}
       >
-        {({ values }) => (
+        {({ values, isSubmitting }) => (
           <Form className="space-y-4">
             <FieldArray name="exercises">
               {({ push, remove }) => (
@@ -60,7 +67,8 @@ const WorkoutLog = () => {
                 </>
               )}
             </FieldArray>
-            <button type="submit" className="btn-black w-full">
+            {errorMessage && <p className="text-green-500 font-dmSans bg-gray-200 rounded flex justify-center">{errorMessage}</p>}
+            <button type="submit" className="btn-black w-full" disabled={isSubmitting}>
               Log Workout
             </button>
           </Form>
@@ -77,37 +85,23 @@ const ExerciseField = React.memo(({ index, remove }) => (
       name={`exercises.${index}.name`}
       placeholder="Exercise name"
       className="w-full px-3 py-2 border rounded mb-2"
+      aria-label={`Exercise name ${index + 1}`}
     />
     <ErrorMessage name={`exercises.${index}.name`} component="div" className="text-red-500 text-sm" />
     
     <div className="grid grid-cols-3 gap-2">
-      <div>
-        <Field
-          name={`exercises.${index}.sets`}
-          type="number"
-          placeholder="Sets"
-          className="w-full px-3 py-2 border rounded"
-        />
-        <ErrorMessage name={`exercises.${index}.sets`} component="div" className="text-red-500 text-sm" />
-      </div>
-      <div>
-        <Field
-          name={`exercises.${index}.reps`}
-          type="number"
-          placeholder="Reps"
-          className="w-full px-3 py-2 border rounded"
-        />
-        <ErrorMessage name={`exercises.${index}.reps`} component="div" className="text-red-500 text-sm" />
-      </div>
-      <div>
-        <Field
-          name={`exercises.${index}.weight`}
-          type="number"
-          placeholder="Weight (lbs)"
-          className="w-full px-3 py-2 border rounded"
-        />
-        <ErrorMessage name={`exercises.${index}.weight`} component="div" className="text-red-500 text-sm" />
-      </div>
+      {['sets', 'reps', 'weight'].map((field) => (
+        <div key={field}>
+          <Field
+            name={`exercises.${index}.${field}`}
+            type="number"
+            placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+            className="w-full px-3 py-2 border rounded"
+            aria-label={`${field.charAt(0).toUpperCase() + field.slice(1)} for exercise ${index + 1}`}
+          />
+          <ErrorMessage name={`exercises.${index}.${field}`} component="div" className="text-red-500 text-sm" />
+        </div>
+      ))}
     </div>
 
     {index > 0 && (
