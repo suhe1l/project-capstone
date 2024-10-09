@@ -34,7 +34,7 @@ const SearchExercises = () => {
     setExercises([]); // Clear previous results
 
     try {
-      // Apply filters and pagination
+      // Set language parameter to English (language ID: 2)
       let url = `https://wger.de/api/v2/exercise/?language=2&search=${encodeURIComponent(searchTerm)}&ordering=name&limit=20&page=${page}`;
 
       // Add equipment filter if selected
@@ -44,7 +44,7 @@ const SearchExercises = () => {
 
       const response = await fetch(url);
       if (!response.ok) throw new Error('Failed to fetch exercises');
-      
+
       const data = await response.json();
 
       // Check if there are results
@@ -52,11 +52,6 @@ const SearchExercises = () => {
         setError('No exercises found for the given search term.');
       } else {
         setExercises(data.results);
-      }
-
-      // If pagination is needed, handle it here
-      if (data.next) {
-        console.log("More pages available, handle pagination if necessary.");
       }
 
     } catch (err) {
