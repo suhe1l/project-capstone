@@ -76,7 +76,7 @@ function HomePage() {
             </div>
 
             <div className="lg:max-w-2xl mt-16 lg:mt-0 md:max-w-xl">
-                <img src={TreadmillMobile} alt="Man on treadmill" className="block md:hidden mt-10 max-w-md" />
+                <img src={TreadmillMobile} alt="Man on treadmill" className="rounded-2xl block md:hidden mt-10 max-w-md" />
                 <img src={TreadmillDesktop} alt="Man on treadmill" className="hidden md:block" />         
             </div>
         </div>
@@ -85,7 +85,7 @@ function HomePage() {
       <div className="section-style">
             <div className="flex-box">
                 <div className="left-div mt-0">
-                    <img src={Bike} alt="Man riding bike" />           
+                    <img src={Bike} alt="Man riding bike" className="sm:rounded-2xl" />           
                 </div>
 
                 <div className="right-div">
