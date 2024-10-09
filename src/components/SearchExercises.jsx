@@ -13,7 +13,6 @@ const SearchExercises = () => {
   const [error, setError] = useState(null);
   const [equipmentOptions, setEquipmentOptions] = useState([]);
 
-  // Fetch available equipment
   const fetchEquipment = async () => {
     try {
       const response = await fetch('https://wger.de/api/v2/equipment/');
@@ -34,10 +33,7 @@ const SearchExercises = () => {
     setExercises([]); // Clear previous results
 
     try {
-      // Set language parameter to English (language ID: 2)
-      let url = `https://wger.de/api/v2/exercise/?language=2&search=${encodeURIComponent(searchTerm)}&ordering=name&limit=20&page=${page}`;
-
-      // Add equipment filter if selected
+      let url = `https://wger.de/api/v2/exercise/?language=2&search=${encodeURIComponent(searchTerm)}&ordering=name&limit=20&page=${page}&status=2`;
       if (equipment) {
         url += `&equipment=${equipment}`;
       }
@@ -47,11 +43,13 @@ const SearchExercises = () => {
 
       const data = await response.json();
 
-      // Check if there are results
-      if (data.results.length === 0) {
-        setError('No exercises found for the given search term.');
+      // Filter out non-English results
+      const englishExercises = data.results.filter(exercise => exercise.description && /^[\x00-\x7F]*$/.test(exercise.description));
+
+      if (englishExercises.length === 0) {
+          setError('No approved exercises found for the given search term. Some descriptions may not be in English.');
       } else {
-        setExercises(data.results);
+          setExercises(englishExercises); // Set filtered exercises
       }
 
     } catch (err) {
@@ -117,7 +115,8 @@ const SearchExercises = () => {
           {exercises.map((exercise) => (
             <li key={exercise.id} className="border p-4 rounded shadow">
               <h3 className="font-bold">{exercise.name}</h3>
-              <p>{exercise.description}</p>
+              {/* Displaying exercise description */}
+              <p>{exercise.description ? exercise.description : 'Description not available.'}</p>
             </li>
           ))}
         </ul>
