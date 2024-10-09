@@ -1,34 +1,42 @@
 import React, { useState, useEffect } from 'react';
 
+// Constants
+const LOCAL_STORAGE_KEY = 'workouts';
+
 const WorkoutHistory = () => {
   const [workouts, setWorkouts] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    const fetchWorkouts = () => {
+    const fetchStoredWorkouts = () => {
       try {
-        const storedWorkouts = JSON.parse(localStorage.getItem('workouts') || '[]');
+        const storedWorkouts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
         setWorkouts(storedWorkouts);
       } catch (error) {
         console.error('Error fetching workouts from localStorage', error);
+        setErrorMessage('Failed to load workouts. Please try again later.');
       }
     };
 
-    fetchWorkouts();
+    fetchStoredWorkouts();
 
-    const handleWorkoutLogged = () => fetchWorkouts();
+    const handleWorkoutLogged = () => fetchStoredWorkouts();
     window.addEventListener('Workout Logged:', handleWorkoutLogged);
 
     return () => window.removeEventListener('Workout Logged:', handleWorkoutLogged);
   }, []);
 
   const deleteWorkout = (index) => {
-    const updatedWorkouts = workouts.filter((_, i) => i !== index);
-    setWorkouts(updatedWorkouts);
-    localStorage.setItem('workouts', JSON.stringify(updatedWorkouts));
+    if (window.confirm('Are you sure you want to delete this workout?')) {
+      const updatedWorkouts = workouts.filter((_, i) => i !== index);
+      setWorkouts(updatedWorkouts);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedWorkouts));
+    }
   };
 
   return (
     <div className="max-w-full">
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       {workouts.length === 0 ? (
         <p className="flex font-poppins text-lg justify-center">No workouts logged yet. Start by logging a workout!</p>
       ) : (
@@ -46,6 +54,7 @@ const WorkoutHistory = () => {
               <button
                 className="text-red-500 hover:text-red-700 mt-2"
                 onClick={() => deleteWorkout(index)}
+                aria-label={`Delete workout logged on ${workout.date}`}
               >
                 Delete Workout
               </button>
