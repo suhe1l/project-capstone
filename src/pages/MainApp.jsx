@@ -5,7 +5,7 @@ import SearchExercises from '../components/SearchExercises';
 
 const MainApp = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mb-16">
       <h1 className="items-baseline text-center font-poppins justify-center content-center text-5xl font-bold lg:font-extrabold my-8 lg:my-10"><span className="font-tacOne text-6xl mr-2">FITrack</span> Fitness Tracker</h1>
       
       <section className="mb-12">
