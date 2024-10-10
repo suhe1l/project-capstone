@@ -6,7 +6,7 @@ import Bike from '../assets/bike.jpg'
 
 function HomePage() {
   return (
-    <section className="relative">
+    <section className="relative animate-fadeIn">
         <div id='home'>
             {/* Background Image */}
             <div className="">
@@ -75,8 +75,8 @@ function HomePage() {
                 </ul>
             </div>
 
-            <div className="lg:max-w-2xl mt-16 lg:mt-0 md:max-w-xl">
-                <img src={TreadmillMobile} alt="Man on treadmill" className="rounded-2xl block md:hidden mt-10 max-w-md" />
+            <div className="md:flex justify-center lg:max-w-2xl mt-16 lg:mt-0 md:max-w-xl">
+                <img src={TreadmillMobile} alt="Man on treadmill" className="rounded-2xl block md:hidden mt-10 max-w-md transition-transform duration-300 hover:scale-[1.02]" />
                 <img src={TreadmillDesktop} alt="Man on treadmill" className="hidden md:block md:max-w-2xl"  />         
             </div>
         </div>
@@ -85,7 +85,7 @@ function HomePage() {
       <div className="section-style">
             <div className="flex-box">
                 <div className="left-div mt-0">
-                    <img src={Bike} alt="Man riding bike" className="sm:rounded-2xl md:rounded-none lg:rounded-none" />           
+                    <img src={Bike} alt="Man riding bike" className="rounded-2xl md:rounded-none lg:rounded-none transition-transform duration-300 hover:scale-[1.02]" />           
                 </div>
 
                 <div className="right-div">
