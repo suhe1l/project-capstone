@@ -10,7 +10,7 @@ function Navbar() {
 
   return (
     <nav className="top-0 w-full bg-white py-4 z-20 shadow-md">
-      <div className="container mx-auto flex justify-between items-center px-6">
+      <div className="container mx-auto flex justify-between items-center px-6 max-w-7xl">
         {/* Logo */}
         <Link to="/" className="text-3xl lg:text-4xl font-tacOne">FITrack</Link>
 
@@ -24,7 +24,7 @@ function Navbar() {
         </div>
 
         {/* Desktop Navigation Links */}
-        <ul className={`md:flex space-x-12 text-black font-teko text-xl ${isOpen ? 'hidden' : 'md:block'}`}>
+        <ul className={`hidden md:flex space-x-12 text-black font-teko text-xl ${isOpen ? 'hidden' : 'md:flex'}`}>
           <li><Link to="/" className="hover:text-green-500">Home</Link></li>
           <li><Link to="/app" className="hover:text-green-500">App</Link></li>
         </ul>
@@ -39,9 +39,9 @@ function Navbar() {
       {isOpen && (
         <div className="md:hidden bg-white shadow-md pb-5">
           <ul className="flex flex-col items-center space-y-4 py-4">
-            <li className="my-1"><Link to="/" className="font-oswald hover:scale-110 transition duration-500 my-1">Home</Link></li>
-            <li className="pb-3"><Link to="/app" className="font-oswald transition duration-500 hover:text-green-500">App</Link></li>
-            <li><Link to="/app" className="btn-black">Get Started</Link></li>
+            <li className="hover:scale-110 transition duration-500 font-oswald hover:text-green-500"><Link to="/" >Home</Link></li>
+            <li className="hover:scale-110 transition duration-500 font-oswald hover:text-green-500"><Link to="/app" >App</Link></li>
+            <li className="btn-normal font-normal"><Link to="/app" >Get Started</Link></li>
           </ul>
         </div>
       )}
