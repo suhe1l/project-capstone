@@ -15,22 +15,22 @@ const SearchExercises = () => {
 
   const fetchEquipment = async () => {
     try {
-      const response = await fetch('https://wger.de/api/v2/equipment/');
+      const response = await fetch('https://wger.de/api/v2/equipment/'); // Fetch Equipment filter from WGER API
       const data = await response.json();
       setEquipmentOptions(data.results);
     } catch (error) {
-      console.error('Error fetching equipment:', error);
+      console.error('Error fetching equipment:', error); // Error handling
     }
   };
 
   useEffect(() => {
-    fetchEquipment();
+    fetchEquipment(); 
   }, []);
 
   const fetchExercises = async (searchTerm, equipment, page = 1) => {
     setLoading(true);
     setError(null);
-    setExercises([]); // Clear previous results
+    setExercises([]); // Clearing previous results
 
     try {
       let url = `https://wger.de/api/v2/exercise/?language=2&search=${encodeURIComponent(searchTerm)}&ordering=name&limit=20&page=${page}&status=2`;
@@ -47,7 +47,7 @@ const SearchExercises = () => {
       const englishExercises = data.results.filter(exercise => exercise.description && /^[\x00-\x7F]*$/.test(exercise.description));
 
       if (englishExercises.length === 0) {
-          setError('No approved exercises found for the given search term. Some descriptions may not be in English.');
+          setError('No approved exercises found for the given search term. Some descriptions may not be in English.'); // Error message for unapproved exercises
       } else {
           setExercises(englishExercises); // Set filtered exercises
       }
@@ -59,7 +59,7 @@ const SearchExercises = () => {
     }
   };
 
-  const debouncedFetch = useCallback(debounce(fetchExercises, 500), []);
+  const debouncedFetch = useCallback(debounce(fetchExercises, 500), []); // Debouncing
 
   const handleSearch = (values, { setSubmitting }) => {
     debouncedFetch(values.searchTerm, values.equipment);
@@ -69,6 +69,8 @@ const SearchExercises = () => {
   return (
     <div className="max-w-4xl mx-auto">
       <h2 className="flex justify-center text-center font-dmSans text-3xl font-bold mb-4 lg:mt-20">Save Yourself the Time and Search Here</h2>
+      
+      {/* Exercise Search Form */}
       <Formik
         initialValues={{ searchTerm: '', equipment: '' }}
         validationSchema={searchSchema}
@@ -86,7 +88,7 @@ const SearchExercises = () => {
               <div className="text-red-500 text-sm mt-1">{errors.searchTerm}</div>
             )}
 
-            {/* Equipment dropdown */}
+            {/* Equipment filter dropdown */}
             <Field as="select" name="equipment" className="w-full px-3 py-2 border rounded mt-2">
               <option value="">Select equipment (optional)</option>
               {equipmentOptions.map((equipment) => (
@@ -96,6 +98,7 @@ const SearchExercises = () => {
               ))}
             </Field>
 
+            {/* Search Button */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -107,9 +110,10 @@ const SearchExercises = () => {
         )}
       </Formik>
 
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
+      {loading && <p>Loading...</p>} {/* Loading Feedback */}
+      {error && <p className="text-red-500">{error}</p>}  {/* Error Message */}
 
+        {/* Search Results */}
       {exercises.length > 0 && (
         <ul className="space-y-4">
           {exercises.map((exercise) => (

@@ -8,6 +8,8 @@ const WorkoutHistory = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
+
+    {/* Fetch from local storage */}
     const fetchStoredWorkouts = () => {
       try {
         const storedWorkouts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
@@ -26,6 +28,7 @@ const WorkoutHistory = () => {
     return () => window.removeEventListener('Workout Logged:', handleWorkoutLogged);
   }, []);
 
+  {/* Delete Workout */}
   const deleteWorkout = (index) => {
     if (window.confirm('Are you sure you want to delete this workout?')) {
       const updatedWorkouts = workouts.filter((_, i) => i !== index);
@@ -36,13 +39,13 @@ const WorkoutHistory = () => {
 
   return (
     <div className="max-w-full">
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>} 
       {workouts.length === 0 ? (
-        <p className="flex font-poppins text-lg justify-center">No workouts logged yet. Start by logging a workout!</p>
+        <p className="flex font-poppins text-lg justify-center">No workouts logged yet. Start by logging a workout!</p> // Initial Message
       ) : (
         <ul className="space-y-4">
           {workouts.map((workout, index) => (
-            <li key={index} className="border p-4 rounded shadow">
+            <li key={index} className="border p-4 rounded shadow">  
               <h3 className="font-dmSans font-bold">{workout.date}</h3>
               <ul className="font-poppins ml-4 list-disc">
                 {workout.exercises.map((exercise, exIndex) => (
@@ -58,7 +61,7 @@ const WorkoutHistory = () => {
               >
                 Delete Workout
               </button>
-            </li>
+            </li> // Logged Workouts
           ))}
         </ul>
       )}

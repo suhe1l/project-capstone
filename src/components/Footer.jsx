@@ -6,6 +6,8 @@ const Footer = () => {
   return (
     <section id='footer'>
       <div className="bg-black w-full pt-10 px-10">
+        
+        {/* Top Section with Links */}
         <div className="flex flex-col md:flex-row items-center lg:flex-row md:justify-between lg:justify-between m-auto mb-10 px-10">
           <Link to="/" className="text-4xl text-white md:text-6xl lg:text-7xl font-tacOne hover:text-green-500">FITrack</Link>
           <ul className="flex flex-col items-center md:items-end mt-2 lg:content-center lg-mr-10">
@@ -16,6 +18,7 @@ const Footer = () => {
 
         <hr className="text-white" />
 
+        {/* Bottom section with Contact Links */}
         <div className="container mx-auto flex justify-center space-x-6 text-white my-10">
           <a 
             href="mailto:suheilmohammed.ke@gmail.com" 

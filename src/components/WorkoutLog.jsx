@@ -67,7 +67,8 @@ const WorkoutLog = () => {
                 </>
               )}
             </FieldArray>
-            {errorMessage && <p className="text-green-500 font-dmSans bg-gray-200 rounded flex justify-center">{errorMessage}</p>}
+            {errorMessage && <p className="text-green-500 font-dmSans bg-gray-200 rounded flex justify-center">{errorMessage}</p>} {/* Error Message */}
+            {/* Log Workout Button */}
             <button type="submit" className="btn-black w-full" disabled={isSubmitting}>
               Log Workout
             </button>
