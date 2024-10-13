@@ -13,22 +13,22 @@ function HomePage() {
                 <img
                     src={HomeImage}
                     alt="Home Background"
-                    className="w-full h-full sm:h-[500px] md:h-[500px] lg:h-[530px] object-cover"
+                    className="w-full h-[440px] md:h-[500px] lg:h-[550px] object-cover"
                 />
             </div>
 
-            <div className="bg-white container mx-auto sm:mt-10 px-4 lg:px-0 md:mt-2">
-                <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start py-10 lg:py-14">
+            <div className="bg-white container mx-auto sm:mt-10 px-4 lg:px-0">
+                <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start py-10 md:pt-5 lg:pb-20">
                     {/* Left Side: Heading */}
-                    <div className="lg:w-1/2 text-center lg:text-left mb-3 lg:mb-0">
+                    <div className="lg:w-1/2 text-center lg:text-left mt-5 md:mt-0 lg:mt-4 mb-3 lg:mb-0">
                         <h1 className="heading-1">
                             A LIFESTYLE,<br /> <span className="line-through italic text-gray-400">NOT A ROUTINE</span>
                         </h1>
                     </div>
 
                     {/* Right Side: Paragraph and Buttons */}
-                    <div className="lg:w-1/2 text-center lg:text-left lg:mt-3 lg:ml-20">
-                        <p className="text-normal">
+                    <div className="lg:w-1/2 text-center lg:max-w-xl lg:text-left lg:ml-18 lg:mt-7">
+                        <p className="text-normal max-w-sm md:max-w-none mt-8 md:mt-0">
                             FITtrack is your ultimate fitness companion, allowing you to log workouts, track progress, and discover new exercises effortlessly. Join a community of fitness enthusiasts and take control of your health today!
                         </p>
                         <div className="font-oswald flex justify-center lg:justify-start space-x-4">

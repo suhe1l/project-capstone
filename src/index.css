@@ -12,11 +12,11 @@
     }
   
     .heading-1 {
-      @apply font-poppins text-4xl md:text-5xl lg:text-7xl md:leading-tight lg:leading-tight text-black font-extrabold lg:mt-6;
+      @apply font-poppins text-5xl md:text-6xl lg:text-[92px] md:leading-tight lg:leading-tight text-black font-extrabold;
     }
   
     .text-normal {
-      @apply text-black text-base lg:text-xl md:text-lg max-w-xl mx-auto lg:mx-0 font-dmSans mb-6;
+      @apply text-black text-lg lg:text-xl md:text-lg max-w-xl mx-auto lg:mx-0 font-dmSans mb-6;
     }
 
     .left-div {
