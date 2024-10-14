@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Constants
 const LOCAL_STORAGE_KEY = 'workouts';
@@ -8,8 +8,6 @@ const WorkoutHistory = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-
-    {/* Fetch from local storage */}
     const fetchStoredWorkouts = () => {
       try {
         const storedWorkouts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
@@ -23,12 +21,11 @@ const WorkoutHistory = () => {
     fetchStoredWorkouts();
 
     const handleWorkoutLogged = () => fetchStoredWorkouts();
-    window.addEventListener('Workout Logged:', handleWorkoutLogged);
+    window.addEventListener('WorkoutLogged', handleWorkoutLogged);
 
-    return () => window.removeEventListener('Workout Logged:', handleWorkoutLogged);
+    return () => window.removeEventListener('WorkoutLogged', handleWorkoutLogged);
   }, []);
 
-  {/* Delete Workout */}
   const deleteWorkout = (index) => {
     if (window.confirm('Are you sure you want to delete this workout?')) {
       const updatedWorkouts = workouts.filter((_, i) => i !== index);
@@ -38,33 +35,28 @@ const WorkoutHistory = () => {
   };
 
   return (
-    <div className="max-w-full">
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>} 
-      {workouts.length === 0 ? (
-        <p className="flex font-poppins text-lg justify-center">No workouts logged yet. Start by logging a workout!</p> // Initial Message
-      ) : (
-        <ul className="space-y-4">
-          {workouts.map((workout, index) => (
-            <li key={index} className="border p-4 rounded shadow">  
-              <h3 className="font-dmSans font-bold">{workout.date}</h3>
-              <ul className="font-poppins ml-4 list-disc">
-                {workout.exercises.map((exercise, exIndex) => (
-                  <li key={exIndex}>
-                    {exercise.name}: {exercise.sets} sets, {exercise.reps} reps, {exercise.weight} lbs
+    <div className="max-w-sm flex flex-col justify-center content-center mx-auto">
+      <h2 className="text-2xl font-poppins font-bold mb-4 mt-10">Workout History</h2>
+      <ul>
+        {workouts.length > 0 ? (
+          workouts.map((workout, index) => (
+            <li key={index} className="mb-4 border p-4">
+              <h3 className="font-semibold font-dmSans">{workout.date}</h3>
+              <ul className="font-dmSans">
+                {workout.exercises.map((exercise, i) => (
+                  <li key={i}>
+                    {exercise.name} - {exercise.sets} sets x {exercise.reps} reps @ {exercise.weight} lbs
                   </li>
                 ))}
               </ul>
-              <button
-                className="text-red-500 hover:text-red-700 mt-2"
-                onClick={() => deleteWorkout(index)}
-                aria-label={`Delete workout logged on ${workout.date}`}
-              >
-                Delete Workout
-              </button>
-            </li> // Logged Workouts
-          ))}
-        </ul>
-      )}
+              <button onClick={() => deleteWorkout(index)} className="text-red-500 hover:text-red-600">Delete Workout</button>
+            </li>
+          ))
+        ) : (
+          <p>No workout history available.</p>
+        )}
+      </ul>
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
     </div>
   );
 };
