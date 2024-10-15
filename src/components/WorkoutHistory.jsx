@@ -1,42 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-// Constants
-const LOCAL_STORAGE_KEY = 'workouts';
-
-const WorkoutHistory = () => {
-  const [workouts, setWorkouts] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect(() => {
-    const fetchStoredWorkouts = () => {
-      try {
-        const storedWorkouts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
-        setWorkouts(storedWorkouts);
-      } catch (error) {
-        console.error('Error fetching workouts from localStorage', error);
-        setErrorMessage('Failed to load workouts. Please try again later.');
-      }
-    };
-
-    fetchStoredWorkouts();
-
-    const handleWorkoutLogged = () => fetchStoredWorkouts();
-    window.addEventListener('WorkoutLogged', handleWorkoutLogged);
-
-    return () => window.removeEventListener('WorkoutLogged', handleWorkoutLogged);
-  }, []);
-
+const WorkoutHistory = ({ workouts }) => {
   const deleteWorkout = (index) => {
     if (window.confirm('Are you sure you want to delete this workout?')) {
       const updatedWorkouts = workouts.filter((_, i) => i !== index);
-      setWorkouts(updatedWorkouts);
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedWorkouts));
+      localStorage.setItem('workouts', JSON.stringify(updatedWorkouts)); // Update localStorage after deletion
+      window.location.reload(); // Simple way to refresh the state (or you can pass a state handler for better performance)
     }
   };
 
   return (
-    <div className="max-w-sm flex flex-col justify-center content-center mx-auto">
-      <h2 className="text-2xl font-poppins font-bold mb-4 mt-10">Workout History</h2>
+    <div className="max-w-sm md:max-w-lg lg:max-w-xl flex flex-col justify-center content-center px-5 mx-3 md:mx-0">
+      <h2 className="flex justify-center text-2xl font-poppins font-bold mb-4 mt-10">Workout History</h2>
       <ul>
         {workouts.length > 0 ? (
           workouts.map((workout, index) => (
@@ -56,7 +31,6 @@ const WorkoutHistory = () => {
           <p>No workout history available.</p>
         )}
       </ul>
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
     </div>
   );
 };

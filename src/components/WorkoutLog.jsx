@@ -18,7 +18,7 @@ const WorkoutSchema = Yup.object().shape({
 
 const WorkoutLog = ({ onNewWorkout }) => {
   return (
-    <div className="mt-10 max-w-sm md:max-w-lg lg:max-w-xl mx-auto">
+    <div className="mt-10 max-w-sm md:max-w-lg lg:max-w-xl mx-2 md:mx-1">
       <h2 className="font-poppins flex justify-center text-2xl md:font-4xl font-bold mb-4">Log a Workout</h2>
       <Formik
         initialValues={{ name: '', sets: '', reps: '', weight: '' }}

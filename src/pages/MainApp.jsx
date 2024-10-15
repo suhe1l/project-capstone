@@ -1,48 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WorkoutLog from '../components/WorkoutLog';
 import WorkoutHistory from '../components/WorkoutHistory';
 import SearchExercises from '../components/SearchExercises';
 import ProgressChart from '../components/ProgressChart';
 
-// Constants
 const LOCAL_STORAGE_KEY = 'workouts';
 
-// MainApp Component
 const MainApp = () => {
-  const [workoutData, setWorkoutData] = useState(() => {
-    // Load initial state from local storage
-    const storedWorkouts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
-    return storedWorkouts;
-  });
+  const [workouts, setWorkouts] = useState([]);
 
+  // Fetch workouts from localStorage on component mount
+  useEffect(() => {
+    const storedWorkouts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+    setWorkouts(storedWorkouts);
+  }, []);
+
+  // Function to handle adding a new workout
   const handleNewWorkout = (newWorkout) => {
-    const updatedWorkouts = [...workoutData, newWorkout];
-    setWorkoutData(updatedWorkouts);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedWorkouts));
+    const updatedWorkouts = [...workouts, newWorkout];
+    setWorkouts(updatedWorkouts);  // Update state
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedWorkouts));  // Persist in localStorage
   };
 
   return (
     <div className="container mx-auto px-4 py-8 mb-16">
-      <h1 className="items-baseline text-center font-poppins justify-center content-center text-5xl font-bold lg:font-extrabold my-8 lg:my-10">
+      <h1 className="items-baseline text-center font-poppins justify-center content-center text-5xl font-bold lg:font-extrabold md:mt-5 md:mb-2 lg:mb-4">
         <span className="font-tacOne text-6xl mr-2">FITrack</span> Fitness Tracker
       </h1>
-      
+      {/* Exercise Search Feature */}
       <section className="mb-12">
         <SearchExercises />
       </section>
 
-      <div className="grid md:grid-cols-2">
+      {/* Workout Tracking through Logging to Local Storage */}
+      <div className="grid justify-center md:grid-cols-2">
         <section className="flex flex-col">
-          <WorkoutLog onNewWorkout={handleNewWorkout} /> {/* Pass update function */}
+          <WorkoutLog onNewWorkout={handleNewWorkout} /> 
         </section>
 
         <section>
-          <WorkoutHistory />
+          <WorkoutHistory workouts={workouts} /> 
         </section>
       </div>
 
+      {/* Data Visualisation in terms of total weight lifted */}
       <section>
-        <ProgressChart data={workoutData} /> {/* Pass updated workout data */}
+        <ProgressChart data={workouts} /> {/* Pass updated workout data */}
       </section>
     </div>
   );

@@ -3,6 +3,7 @@ import HomeImage from '../assets/HomeImage.jpg';
 import TreadmillMobile from '../assets/treadmill-cropped.png';
 import TreadmillDesktop from '../assets/Treadmill.jpg'
 import Bike from '../assets/bike.jpg'
+import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
@@ -32,8 +33,8 @@ function HomePage() {
                             FITtrack is your ultimate fitness companion, allowing you to log workouts, track progress, and discover new exercises effortlessly. Join a community of fitness enthusiasts and take control of your health today!
                         </p>
                         <div className="font-oswald flex justify-center lg:justify-start space-x-4">
-                            <button className="btn-black">Get Started</button>
-                            <button className="btn-normal">Learn More</button>
+                            <Link className="btn-black" to='/app'>Get Started</Link>
+                            <Link className="btn-normal" to='#about'>Learn More</Link>
                         </div>
                     </div>
                 </div>
@@ -94,7 +95,7 @@ function HomePage() {
                     <h2 className="text-center lg:text-start font-poppins text-4xl font-extrabold my-4 leading-snug">Discover Exercises with <span className="text-green-500 italic">WGER API</span> Integration</h2>
                     <p className="text-center lg:text-start text-normal lg:text-2xl">With our <span className="font-bold">Exercise Search</span> feature, you can effortlessly find a wide variety of exercises tailored to your fitness goals. The <span className="font-bold italic">WGER API</span> integration ensures you have access to detailed exercise descriptions and variations at your fingertips.</p>
                     <div>
-                        <button className="btn-normal font-oswald my-0 lg:text-lg">Explore</button>
+                        <Link to='/app' className="btn-normal font-oswald my-0 lg:text-lg">Explore</Link>
                     </div>
                 </div>
             </div>
